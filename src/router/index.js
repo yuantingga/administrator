@@ -19,6 +19,9 @@ router.beforeEach((to, form, next) => {
   console.log(to)
   console.log(form)
   const token = sessionStorage.getItem('token')
+  if (to.path === '/login') {
+    sessionStorage.clear()
+  }
   if (to.path !== '/login' && !token) {
     next('/login')
   } else {
