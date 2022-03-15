@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-
+<!-- 路由组件 -->
     <router-link to="/login"></router-link>
     <router-view></router-view>
   </div>
