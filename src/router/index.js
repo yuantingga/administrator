@@ -3,19 +3,27 @@ import VueRouter from 'vue-router'
 import Login from '@/components/QQLogin.vue'
 import QQHome from '@/components/QQHome.vue'
 import Welcome from '@/components/WelCome.vue'
-import QQUsers from '@/components/QQUsers.vue'
+import QQUsers from '@/components/HomeUsers.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
+  // 登陆页码的路由规则
   { path: '/login', component: Login },
+  // 登陆后页码路由规则home组件
   {
     path: '/home',
     component: QQHome,
     children: [
+      // home组件的搜也
       { path: '/', redirect: 'welcome' },
       { path: 'welcome', component: Welcome },
-      { path: 'users', component: QQUsers }
+      // 用户管理
+      {
+        path: 'users',
+        component: QQUsers
+
+      }
       // { path: 'users', component: QQUsers }
       // { path: 'users', component: QQUsers }
       // { path: 'users', component: QQUsers }
@@ -30,6 +38,7 @@ const routes = [
 const router = new VueRouter({
   routes
 })
+// 导航守卫
 router.beforeEach((to, form, next) => {
   const token = sessionStorage.getItem('token')
   if (to.path === '/login') {
