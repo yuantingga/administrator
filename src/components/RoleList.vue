@@ -176,7 +176,9 @@ export default {
     }
   },
   created () {
-    this.Rokleslist()
+    setTimeout(() => {
+      this.Rokleslist()
+    }, 1000)
   },
   methods: {
     // 删除确定

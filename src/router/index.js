@@ -6,7 +6,8 @@ import Welcome from '@/components/WelCome.vue'
 import QQUsers from '@/components/HomeUsers.vue'
 import SupersuList from '@/components/SupersuList.vue'
 import RoleList from '@/components/RoleList.vue'
-
+import ProductList from '@/components/ProductList.vue'
+import ProductClassify from '@/components/ProductClassify.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -27,8 +28,9 @@ const routes = [
 
       },
       { path: 'rights', component: SupersuList },
-      { path: 'roles', component: RoleList }
-      // { path: 'users', component: QQUsers }
+      { path: 'roles', component: RoleList },
+      { path: 'goods', component: ProductList },
+      { path: 'categories', component: ProductClassify }
       // { path: 'users', component: QQUsers }
       // { path: 'users', component: QQUsers }
     ]

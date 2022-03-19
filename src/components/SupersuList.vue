@@ -40,7 +40,9 @@ export default {
   },
   // 获取数据
   created () {
-    this.SupersuLis()
+    setTimeout(() => {
+      this.SupersuLis()
+    }, 1000)
   },
   methods: {
     // 发送请求获取数据

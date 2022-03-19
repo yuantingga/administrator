@@ -204,7 +204,9 @@ export default {
   },
   // 获取用户数据生命周期
   created () {
-    this.DateList()
+    setTimeout(() => {
+      this.DateList()
+    }, 1000)
   },
   methods: {
     // 修改用户按钮
