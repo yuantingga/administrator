@@ -4,6 +4,8 @@ import Login from '@/components/QQLogin.vue'
 import QQHome from '@/components/QQHome.vue'
 import Welcome from '@/components/WelCome.vue'
 import QQUsers from '@/components/HomeUsers.vue'
+import SupersuList from '@/components/SupersuList.vue'
+import RoleList from '@/components/RoleList.vue'
 
 Vue.use(VueRouter)
 
@@ -23,9 +25,9 @@ const routes = [
         path: 'users',
         component: QQUsers
 
-      }
-      // { path: 'users', component: QQUsers }
-      // { path: 'users', component: QQUsers }
+      },
+      { path: 'rights', component: SupersuList },
+      { path: 'roles', component: RoleList }
       // { path: 'users', component: QQUsers }
       // { path: 'users', component: QQUsers }
       // { path: 'users', component: QQUsers }

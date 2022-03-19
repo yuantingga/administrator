@@ -4,7 +4,7 @@
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/home/welcome' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>用户管理</el-breadcrumb-item>
-      <!-- <el-breadcrumb-item>用户列表</el-breadcrumb-item> -->
+      <el-breadcrumb-item>用户列表</el-breadcrumb-item>
     </el-breadcrumb>
 
     <!-- 卡片区域 -->
@@ -37,13 +37,13 @@
               <el-switch v-model="scope.row.mg_state" @change="Changestatus(scope.row)" active-color="#13ce66" inactive-color="#ff4949"> </el-switch>
             </template>
           </el-table-column>
-          <el-table-column prop="id" label="操作">
+          <el-table-column prop="id" label="操作" width="200">
             <template slot-scope="scope">
               <el-button type="primary" size="mini" icon="el-icon-edit" @click="UsersModify(scope.row)" style="margin-right: 10px"></el-button>
 
-              <el-dialog title="提示" :visible.sync="Users" width="50%" :before-close="handleClose">
+              <el-dialog title="编辑用户信息" @close="AmendClose" :visible.sync="Users" width="50%" :before-close="handleClose">
                 <el-form ref="AmendForm" :model="Modify" :rules="AddUsersRules" status-icon>
-                  <el-form-item label="用户名"  :label-width="formLabelWidth">
+                  <el-form-item label="用户名" :label-width="formLabelWidth">
                     <el-input v-model="Modify.username" :disabled="true" autocomplete="off"></el-input>
                   </el-form-item>
                   <el-form-item label="邮箱" prop="emall" :label-width="formLabelWidth">
@@ -53,29 +53,51 @@
                   <el-form-item label="电话" prop="mobile" :label-width="formLabelWidth">
                     <el-input v-model="Modify.mobile" autocomplete="off"></el-input>
                   </el-form-item>
-                    <el-form-item  class="btn">
-
-                   <div>
-                    <el-button @click="Users =false" >取 消</el-button>
-                    <el-button type="primary" @click="ModifAffirm">确 定</el-button>
-
-                   </div>
-                    </el-form-item>
+                  <el-form-item class="btn">
+                    <div>
+                      <el-button @click="Users = false">取 消</el-button>
+                      <el-button type="primary" @click="ModifAffirm">确 定</el-button>
+                    </div>
+                  </el-form-item>
                 </el-form>
               </el-dialog>
 
               <!-- <template slot-scope="scope"> -->
-               <el-button type="danger"  @click="open(scope.row)" size="mini" icon="el-icon-delete"></el-button>
+              <el-button type="danger" @click="open(scope.row)" size="mini" icon="el-icon-delete"></el-button>
 
               <!-- </template> -->
 
               <el-tooltip class="item" effect="dark" content="分享角色" placement="top" :enterable="false">
-                <el-button type="warning" size="mini" icon="el-icon-share"></el-button>
+                <el-button type="warning" size="mini" icon="el-icon-share" @click="rolepupup(scope.row)"> </el-button>
               </el-tooltip>
             </template>
           </el-table-column>
         </el-table>
       </el-row>
+      <!-- 分享校色弹框 -->
+      <el-dialog @close="closeRole" title="分享角色" :visible.sync="role" width="50%" :before-close="handleClose">
+        <div class="user">
+          <span>用户名称: {{ rolename.username }}</span>
+        </div>
+        <div class="user">
+          <span>角色名称: {{ rolename.role_name }}</span>
+        </div>
+        <div>
+          <el-form ref="selectForm">
+            <el-form-item label="分配新角色" prop="region">
+              <el-select v-model="ruleForm.region" placeholder="请选择角色">
+                <el-option v-for="item in ruleForm.select" :key="item.id"
+                :label="item.roleDesc" :value="item.id"></el-option>
+              </el-select>
+            </el-form-item>
+          </el-form>
+        </div>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="role = false">取 消</el-button>
+          <el-button type="primary" @click="affirmrole">确 定</el-button>
+        </span>
+      </el-dialog>
+
       <!-- 分页控件 -->
       <el-row style="margin-top: 15px">
         <el-pagination ref="yemian" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage4" :page-sizes="arr" :page-size="4" layout="total, sizes, prev, pager, next, jumper" :total="listDate.total"> </el-pagination>
@@ -83,17 +105,17 @@
       <!-- 添加用户的弹出框 -->
 
       <el-row>
-        <el-dialog title="添加用户" :visible.sync="dialogFormVisible">
-          <el-form ref="loginFormRef" :model="adduser" :rules="AddUsersRules" status-icon>
+        <el-dialog title="添加用户" :before-close="AddUserClose" @close="AddUserClose" :visible.sync="dialogFormVisible">
+          <el-form :hide-required-asterisk="true" ref="loginFormRef" :model="adduser" :rules="AddUsersRules" status-icon>
             <el-form-item label="用户名" prop="username" :label-width="formLabelWidth">
               <el-input v-model="adduser.username" autocomplete="off"></el-input>
             </el-form-item>
 
-            <el-form-item label="密码"  prop="password" :label-width="formLabelWidth">
+            <el-form-item label="密码" prop="password" :label-width="formLabelWidth">
               <el-input v-model="adduser.password" autocomplete="off"></el-input>
             </el-form-item>
-            <el-form-item label="邮箱" prop="emall" :label-width="formLabelWidth"  >
-              <el-input v-model="adduser.emall" autocomplete="off"  ></el-input>
+            <el-form-item label="邮箱" prop="emall" :label-width="formLabelWidth">
+              <el-input v-model="adduser.emall" autocomplete="off"></el-input>
             </el-form-item>
 
             <el-form-item label="电话" prop="mobile" :label-width="formLabelWidth">
@@ -111,7 +133,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 export default {
   data () {
     const checkAge = (rule, value, callback) => {
@@ -131,7 +152,11 @@ export default {
         callback(new Error('请重新输入邮箱'))
       }
     }
+
     return {
+      rolename: '',
+      role: false,
+      roleValue: '',
       // 用于接收获取到的用户数据
       listDate: '',
       // 当前显示的页码
@@ -145,6 +170,10 @@ export default {
       // dialogFormVisible: true
       dialogFormVisible: false,
       Users: false,
+      ruleForm: {
+        select: '',
+        region: ''
+      },
       adduser: {
         username: '',
         password: '',
@@ -204,12 +233,15 @@ export default {
       this.$message({
         type: 'success',
         message: '修改成功'
-
       })
       this.Users = false
       this.DateList()
     },
 
+    // 编辑弹框消失
+    AmendClose () {
+      this.$refs.AmendForm.resetFields()
+    },
     //  添加用户取消按钮
     UsersReset () {
       this.dialogFormVisible = false
@@ -272,7 +304,7 @@ export default {
       console.log(scorp)
       console.log(scorp.id)
       // 发起请求
-      const { data: res } = await axios.put(`users/${scorp.id}/state/${scorp.mg_state}`)
+      const { data: res } = await this.$http.put(`users/${scorp.id}/state/${scorp.mg_state}`)
       if (res.meta.status !== 200) {
         this.open4()
         setTimeout(() => {
@@ -301,6 +333,7 @@ export default {
         type: 'success'
       })
     },
+    // 删除弹框
     async open (scope) {
       try {
         const inquiry = this.$confirm('此操作将永久删除该用户, 是否继续?', {
@@ -331,19 +364,57 @@ export default {
           console.log(222)
         }
       }
+    },
+    closeRole () {
+      this.ruleForm = ''
+      this.$refs.selectForm.resetFields()
+    },
+    AddUserClose () {
+      this.dialogFormVisible = false
+      this.$refs.loginFormRef.resetFields()
+    },
+    // 分配角色函数
+    async rolepupup (scope) {
+      this.rolename = scope
+      this.role = true
+      const { data: res } = await this.$http.get('roles')
+      console.log(res)
+      this.ruleForm.select = res.data
+    },
+    // 确认按钮
+    async affirmrole () {
+      this.role = false
+      console.log(this.rolename)
+      if (this.ruleForm.region === '') {
+        this.$message.error('请输入角色')
+      }
+      console.log(this.ruleForm.region)
+      const { data: res } = await this.$http.put(`users/${this.rolename.id}/role`, {
+        rid: this.ruleForm.region
+      })
+      console.log(res)
+      if (res.meta.status !== 200) return this.$message.error('更新失败')
+      this.$message({
+        type: 'success',
+        message: '更新成功'
+      })
+      this.DateList()
     }
   }
 }
 </script>
 
 <style lang="less" scoped>
+.user {
+  margin-bottom: 30px;
+}
 .el-breadcrumb {
   margin-bottom: 15px;
 }
 .box-card {
   overflow: hidden;
 }
-.btn{
+.btn {
   display: flex;
   justify-content: flex-end;
 }
