@@ -63,7 +63,7 @@
         </el-row>
         <!-- 分配用户权限 -->
         <el-dialog title="分配权限" @close="closeDefKeys" :visible.sync="dialogVisible" width="50%"
-        :before-close="handleClose">
+       >
           <el-tree ref="treeRef" :data="TreeStructuredData" show-checkbox node-key="id"
           :default-expand-all="true" :default-checked-keys="defKeys" :props="defaultProps"> </el-tree>
 
@@ -73,7 +73,7 @@
           </span>
         </el-dialog>
         <!-- 添加角色 -->
-        <el-dialog @close="closeform" title="添加角色" :visible.sync="Addrole" width="50%" :before-close="handleClose">
+        <el-dialog @close="closeform" title="添加角色" :visible.sync="Addrole" width="50%">
           <!-- 角色表单 -->
 
           <div>
@@ -82,7 +82,7 @@
               <el-form-item label="角色名称" prop="roleName">
                 <el-input v-model="ruleForm.roleName"></el-input>
               </el-form-item>
-              <el-form-item label="角色描述" prop="roleDesc">
+              <el-form-item label="角色描述" >
                 <el-input v-model="ruleForm.roleDesc"></el-input>
               </el-form-item>
             </el-form>
@@ -97,7 +97,7 @@
         <!-- 编辑角色弹窗 -->
 
         <el-dialog title="编辑角色" @close="editClose" :visible.sync="compileRoles"
-         width="50%" :before-close="handleClose">
+         width="50%" >
 
           <div>
             <el-form :hide-required-asterisk="true" :model="compile"
@@ -128,7 +128,7 @@ export default {
       // 添加角色弹窗
       Addrole: false,
       // 接收角色列表数据
-      list: '',
+      list: [],
 
       // 树型结构渲染选项数据
       TreeStructuredData: '',
@@ -229,18 +229,10 @@ export default {
     async affirmrole () {
       // 表单预校验
       console.log(1111)
-      const verify = this.$refs.rolefrom.validate()
+      const verify = await this.$refs.rolefrom.validate()
       // 添加角色数据
-      const { data: res } = await verify.then(
-        () => {
-          const data = this.$http.post('roles', this.ruleForm)
-          return data
-        },
-        // eslint-disable-next-line node/handle-callback-err
-        () => {
-          this.$message.error('请输入正确的文本')
-        }
-      )
+      if (!verify) return
+      const { data: res } = await this.$http.post('roles', this.ruleForm)
 
       if (res.meta.status !== 201) return this.$message.error('添加失败')
       this.$message({

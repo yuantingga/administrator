@@ -6,6 +6,8 @@ import Welcome from '@/components/WelCome.vue'
 import QQUsers from '@/components/HomeUsers.vue'
 import SupersuList from '@/components/SupersuList.vue'
 import RoleList from '@/components/RoleList.vue'
+import GoodsCategory from '@/components/GoodsCategory.vue'
+import SortingParameter from '@/components/SortingParameter.vue'
 
 Vue.use(VueRouter)
 
@@ -27,9 +29,9 @@ const routes = [
 
       },
       { path: 'rights', component: SupersuList },
-      { path: 'roles', component: RoleList }
-      // { path: 'users', component: QQUsers }
-      // { path: 'users', component: QQUsers }
+      { path: 'roles', component: RoleList },
+      { path: 'categories', component: GoodsCategory },
+      { path: 'params', component: SortingParameter }
       // { path: 'users', component: QQUsers }
     ]
   },

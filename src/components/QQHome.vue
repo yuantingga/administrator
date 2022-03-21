@@ -7,7 +7,7 @@
           <img src="@/assets/426e1f3b1d240b85452a8aa6b6c216da.jpeg" alt="" />
           <h1>后台管理系统</h1>
         </div>
-        <div><el-button type="info" v-loading.fullscreen.lock="outbtn" element-loading-text="正在退出" @click="open">退出</el-button></div>
+        <div><el-button type="info" @click="open">退出</el-button></div>
       </el-header>
 
       <el-container>
@@ -19,8 +19,8 @@
           需要注意在el-submenu 组件开始循环，，以及index属性的值不能进行重复
 
            -->
-          <el-menu router="true" collapse-transition="false" :collapse="bool" :default-active="userrouer" class="el-menu-vertical-demo"
-          @open="handleOpen" @close="handleClose"
+          <el-menu :router="true"  :collapse="bool" :default-active="userrouer" class="el-menu-vertical-demo"
+
           background-color="#333" text-color="#fff" active-text-color="#409EFF" :unique-opened='true'>
 
             <el-submenu   v-for="(item) in list" :key="item.id"   :index="item['id']+''">
@@ -32,7 +32,7 @@
               </template>
                 <!-- 二级菜单循环,当点击时需要修改路由实现跳转  -->
               <el-menu-item-group v-for="(iii) in item.children" :key="iii.id">
-                <el-menu-item v-loading.fullscreen.lock="fullscreenLoading"  element-loading-text="拼命加载中" @click="KeepState('/home/'+iii.path)" :index="'/home/'+iii.path">
+                <el-menu-item   @click="KeepState('/home/'+iii.path)" :index="'/home/'+iii.path">
 
                  <i class="el-icon-menu"></i>{{iii.authName}}</el-menu-item>
               </el-menu-item-group>
@@ -53,7 +53,6 @@
 export default {
   data () {
     return {
-      fullscreenLoading: false,
       outbtn: false,
       // 实现侧边栏的切换
       bool: false,
@@ -121,11 +120,6 @@ export default {
       // 将val的值存储在本地缓存中，此时刷新也不会丢失状态否则关闭窗口
       sessionStorage.setItem('keepstate', val)
       this.userrouer = sessionStorage.getItem('keepstate')
-      this.fullscreenLoading = true
-
-      setTimeout(() => {
-        this.fullscreenLoading = false
-      }, 2000)
     }
   }
 }
