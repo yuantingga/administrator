@@ -8,7 +8,8 @@ import SupersuList from '@/components/SupersuList.vue'
 import RoleList from '@/components/RoleList.vue'
 import GoodsCategory from '@/components/GoodsCategory.vue'
 import SortingParameter from '@/components/SortingParameter.vue'
-
+import ProductList from '@/components/ProductList.vue'
+import AddProduct from '@/components/AddProduct.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -31,8 +32,9 @@ const routes = [
       { path: 'rights', component: SupersuList },
       { path: 'roles', component: RoleList },
       { path: 'categories', component: GoodsCategory },
-      { path: 'params', component: SortingParameter }
-      // { path: 'users', component: QQUsers }
+      { path: 'params', component: SortingParameter },
+      { path: 'goods', component: ProductList },
+      { path: 'AddProduct', component: AddProduct }
     ]
   },
 

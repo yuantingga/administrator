@@ -19,7 +19,11 @@
               <el-button type="primary" @click="AddDialog = true" :disabled="isDisabled">添加参数</el-button>
 
               <el-table :data="dynamicTable" border style="width: 100%; margin: 15px 0">
-                <el-table-column type="expand"></el-table-column>
+                <el-table-column type="expand">
+                  <template slot-scope="scope">
+                    <TabInput   :editDate="scope.row" :classify="SortSelection[2]" ></TabInput>
+                  </template>
+                </el-table-column>
                 <el-table-column type="index" label="#"></el-table-column>
                 <el-table-column prop="attr_name" label="属性名称"></el-table-column>
                 <el-table-column label="操作">
@@ -35,6 +39,10 @@
               <el-button type="primary" @click="AddDialog = true" :disabled="isDisabled">添加属性</el-button>
               <el-table :data="staticTable" border style="width: 100%; margin: 15px 0">
                 <el-table-column type="expand">
+                  <template slot-scope="scope">
+                    <TabInput   :editDate="scope.row" :classify="SortSelection[2]" ></TabInput>
+
+                  </template>
                 </el-table-column>
                 <el-table-column type="index" label="#"></el-table-column>
                 <el-table-column prop="attr_name" label="属性名称"> </el-table-column>
@@ -52,7 +60,7 @@
         <el-col>
           <!-- 编辑弹窗 -->
 
-          <el-dialog @close="editClose" :title="editForm.TitleName" :visible.sync="editDialog" width="50%" >
+          <el-dialog @close="editClose" :title="editForm.TitleName" :visible.sync="editDialog" width="50%">
             <!-- TitleName -->
             <el-form :hide-required-asterisk="true" :model="editForm" :rules="editFormRules" ref="editForm" label-width="100px" class="demo-ruleForm">
               <el-form-item :label="AddName + ' :'">
@@ -70,7 +78,7 @@
         </el-col>
         <!-- 添加弹窗 -->
         <el-col>
-          <el-dialog @close="removalForm" :title="dialogTitle" :visible.sync="AddDialog" width="50%" >
+          <el-dialog @close="removalForm" :title="dialogTitle" :visible.sync="AddDialog" width="50%">
             <el-form :hide-required-asterisk="true" :model="AddDialogForm" :rules="AddDialogRules" ref="AdddialogForm" label-width="100px" class="demo-ruleForm">
               <el-form-item :label="AddName" prop="attr_name">
                 <el-input v-model="AddDialogForm.attr_name"></el-input>
@@ -88,6 +96,7 @@
 </template>
 
 <script>
+import TabInput from '@/components/TabInput.vue'
 export default {
   created () {
     this.SortingParameterList()
@@ -100,6 +109,10 @@ export default {
 
   data () {
     return {
+
+      SonlistTag: [],
+
+      DynamicInput: false,
 
       // 用于编辑按钮点击确认的请求数据
       editDate: '',
@@ -153,9 +166,7 @@ export default {
     }
   },
   methods: {
-    handleOpen () {
 
-    },
     // 编辑弹窗关闭事件，对表单进行重置
     editClose () {
       this.$refs.editForm.resetFields()
@@ -227,11 +238,7 @@ export default {
       const { data: res } = await this.$http.get(`categories/${this.SortSelection[2]}/attributes`, {
         params: { sel: this.activeName }
       })
-      console.log(res)
-      // for (const i in res.data) {
-      //   const arr = res.data[i].attr_vals.split(',')
-      //   console.log(arr);
-      // }
+      this.SonlistTag = res.data
       if (this.activeName === 'only') {
         this.staticTable = res.data
         this.dialogTitle = '添加属性'
@@ -251,6 +258,8 @@ export default {
       } else {
         this.CategoryList()
       }
+      this.dynamicTable = []
+      this.staticTable = []
     },
     // 用于获取级联选择器的分类
     async SortingParameterList () {
@@ -262,11 +271,32 @@ export default {
     activeName (val) {
       this.CategoryList()
     }
+  },
+  components: {
+    TabInput
   }
 }
 </script>
 
 <style lang="less" scoped>
-.box-card {
+.el-tag + .el-tag {
+  margin-left: 10px;
 }
+.button-new-tag {
+  margin-left: 10px;
+  height: 32px;
+  line-height: 30px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.input-new-tag {
+  width: 90px;
+  margin-left: 10px;
+  vertical-align: bottom;
+}
+.input-new-tag {
+  width: 100px;
+  height: 32px;
+}
+
 </style>

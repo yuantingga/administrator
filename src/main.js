@@ -18,9 +18,15 @@ axios.interceptors.request.use(function (config) {
 Vue.prototype.moment = moment
 
 Vue.prototype.$http = axios
+Vue.filter('DateFun', function (val) {
+  const d = new Date(val)
+  const geshi = moment(d).format('YYYY-MM-DD hh:mm:ss')
+  return geshi
+})
 Vue.config.productionTip = false
 
 new Vue({
   router,
   render: h => h(App)
+
 }).$mount('#app')

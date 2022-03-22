@@ -1,13 +1,11 @@
 <template>
-    <div style="height:100%" v-loading="loading" element-loading-text="拼命加载中"
-    element-loading-spinner="el-icon-loading"
-    element-loading-background="rgba(255,255,255)">
+    <div style="height:100%">
     <el-row style="margin-bottom: 15px">
       <el-col>
         <el-breadcrumb separator-class="el-icon-arrow-right">
           <el-breadcrumb-item :to="{ path: '/home/welcome' }">首页</el-breadcrumb-item>
-          <el-breadcrumb-item>活动管理</el-breadcrumb-item>
-          <el-breadcrumb-item>活动列表</el-breadcrumb-item>
+          <el-breadcrumb-item>商品分类</el-breadcrumb-item>
+          <el-breadcrumb-item>商品列表</el-breadcrumb-item>
         </el-breadcrumb>
       </el-col>
     </el-row>

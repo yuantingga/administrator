@@ -51,6 +51,8 @@
 
 <script>
 export default {
+  mounted () {
+  },
   data () {
     return {
       outbtn: false,
@@ -77,6 +79,7 @@ export default {
   },
 
   methods: {
+
     // 用于侧边栏的切换
     toggle () {
       this.bool = !this.bool
@@ -127,6 +130,7 @@ export default {
 
 <style lang="less" scoped>
 .home {
+  min-width: 750px;
   height: 100%;
 }
 .el-header {
