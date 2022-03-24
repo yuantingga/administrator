@@ -28,7 +28,7 @@ export default {
       val.filter((ele) => {
         const obj = {
           attr_id: ele.attr_id,
-          attr_vals: ele.attr_vals.join(',')
+          attr_value: ele.attr_vals.join(',')
         }
 
         this.arr.push(obj)
@@ -37,7 +37,12 @@ export default {
     EventBus.$on('ProductAttributes', (val) => {
       // eslint-disable-next-line array-callback-return
       val.filter((ele) => {
-        this.arr.push(ele)
+        const obj = {
+          attr_id: ele.attr_id,
+          attr_value: ele.attr_vals
+        }
+
+        this.arr.push(obj)
       })
     })
 
