@@ -11,6 +11,7 @@ import SortingParameter from '@/components/gook_cate/SortingParameter.vue'
 import ProductList from '@/components/gook_cate/ProductList.vue'
 import AddProduct from '@/components/gook_cate/addgoods/AddProduct.vue'
 import OrderList from '@/components/orderlist/OrderList.vue'
+import DataStatistics from '@/components/DataStatistics/DataStatistics.vue'
 
 Vue.use(VueRouter)
 
@@ -37,7 +38,8 @@ const routes = [
       { path: 'params', component: SortingParameter },
       { path: 'goods', component: ProductList },
       { path: 'AddProduct', component: AddProduct },
-      { path: 'orders', component: OrderList }
+      { path: 'orders', component: OrderList },
+      { path: 'reports', component: DataStatistics }
     ]
   },
 
