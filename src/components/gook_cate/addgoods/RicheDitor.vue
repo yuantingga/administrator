@@ -85,7 +85,7 @@ export default {
       const { data: res } = await this.$http.post('goods', this.richditor)
       console.log(res)
 
-      if (res.meta.status !== 201) return this.$message.error('添加失败')
+      if (res.meta.status !== 201) return this.$message.error(res.meta.msg)
       this.$message({
         type: 'success',
         message: '添加商品成功'
