@@ -114,10 +114,10 @@ export default {
       tabledata: [],
       inputvalue: '',
       activities: [{
-        content: '活动按期开始',
+        content: '没有api无法获取到数据',
         timestamp: '2018-04-15'
       }, {
-        content: '通过审核',
+        content: '只能演示一下时间线使用',
         timestamp: '2018-04-13'
       }, {
         content: '创建成功',
