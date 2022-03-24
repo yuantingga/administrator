@@ -11,6 +11,7 @@
 
 <script>
 import EventBus from '@/components/eventBus.JS'
+
 export default {
   created () {
     EventBus.$on('WaremessAge', (val) => {
@@ -22,24 +23,21 @@ export default {
       this.richditor.goods_introduce = val.goods_introduce
     })
     EventBus.$on('ProductParameter', (val) => {
+      this.arr = []
       // eslint-disable-next-line array-callback-return
       val.filter((ele) => {
         const obj = {
           attr_id: ele.attr_id,
           attr_vals: ele.attr_vals.join(',')
         }
-        this.richditor.attrs.push(obj)
+
+        this.arr.push(obj)
       })
     })
     EventBus.$on('ProductAttributes', (val) => {
-      console.log(val)
       // eslint-disable-next-line array-callback-return
       val.filter((ele) => {
-        const obj = {
-          attr_id: ele.attr_id,
-          attr_vals: ele.attr_vals
-        }
-        this.richditor.attrs.push(obj)
+        this.arr.push(ele)
       })
     })
 
@@ -50,6 +48,7 @@ export default {
   data () {
     return {
       editor: '',
+      arr: [],
       richditor: {
         goods_introduce: '',
         goods_weight: '',
@@ -62,6 +61,12 @@ export default {
       }
     }
   },
+  watch: {
+    arr: function (val) {
+      this.richditor.attrs = val
+      console.log(this.richditor)
+    }
+  },
   methods: {
     Rich () {
       this.$emit('Richeblue')
@@ -71,14 +76,16 @@ export default {
       this.editor = this.editor.replace(zheng, '')
       this.richditor.goods_introduce = this.editor
       console.log(this.richditor)
-      this.$emit('RicheAddBtn')
+
       const { data: res } = await this.$http.post('goods', this.richditor)
+      console.log(res)
 
       if (res.meta.status !== 201) return this.$message.error('添加失败')
       this.$message({
         type: 'success',
         message: '添加商品成功'
       })
+      this.$emit('RicheAddBtn')
       setTimeout(() => {
         this.$router.push('/home/goods')
       }, 1000)
