@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Login from '@/components/QQLogin.vue'
-import QQHome from '@/components/QQHome.vue'
-import Welcome from '@/components/WelCome.vue'
-import QQUsers from '@/components/HomeUsers.vue'
-import SupersuList from '@/components/SupersuList.vue'
-import RoleList from '@/components/RoleList.vue'
+import Login from '@/components/login/QQLogin.vue'
+import QQHome from '@/components/users/QQHome.vue'
+import Welcome from '@/components/users/WelCome.vue'
+import QQUsers from '@/components/users/HomeUsers.vue'
+import SupersuList from '@/components/SupersuPro/SupersuList.vue'
+import RoleList from '@/components/SupersuPro/RoleList.vue'
 
 Vue.use(VueRouter)
 
