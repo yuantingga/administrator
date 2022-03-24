@@ -10,7 +10,7 @@
     <!-- 卡片区域 -->
     <el-card class="box-card">
       <!-- 表单控件 -->
-      <el-row gutter="20">
+      <el-row :gutter="20">
         <!-- 表单输入框 -->
         <el-col :span="8">
           <div style="">
@@ -41,7 +41,7 @@
             <template slot-scope="scope">
               <el-button type="primary" size="mini" icon="el-icon-edit" @click="UsersModify(scope.row)" style="margin-right: 10px"></el-button>
 
-              <el-dialog title="编辑用户信息" @close="AmendClose" :visible.sync="Users" width="50%" :before-close="handleClose">
+              <el-dialog title="编辑用户信息" @close="AmendClose" :visible.sync="Users" width="50%" >
                 <el-form ref="AmendForm" :model="Modify" :rules="AddUsersRules" status-icon>
                   <el-form-item label="用户名" :label-width="formLabelWidth">
                     <el-input v-model="Modify.username" :disabled="true" autocomplete="off"></el-input>
@@ -75,7 +75,7 @@
         </el-table>
       </el-row>
       <!-- 分享校色弹框 -->
-      <el-dialog @close="closeRole" title="分享角色" :visible.sync="role" width="50%" :before-close="handleClose">
+      <el-dialog @close="closeRole" title="分享角色" :visible.sync="role" width="50%" >
         <div class="user">
           <span>用户名称: {{ rolename.username }}</span>
         </div>

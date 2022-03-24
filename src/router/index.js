@@ -6,8 +6,15 @@ import Welcome from '@/components/WelCome.vue'
 import QQUsers from '@/components/HomeUsers.vue'
 import SupersuList from '@/components/SupersuList.vue'
 import RoleList from '@/components/RoleList.vue'
+<<<<<<< HEAD
 import ProductList from '@/components/ProductList.vue'
 import ProductClassify from '@/components/ProductClassify.vue'
+=======
+import GoodsCategory from '@/components/GoodsCategory.vue'
+import SortingParameter from '@/components/SortingParameter.vue'
+import ProductList from '@/components/ProductList.vue'
+import AddProduct from '@/components/AddProduct.vue'
+>>>>>>> gook_cate
 Vue.use(VueRouter)
 
 const routes = [
@@ -29,10 +36,17 @@ const routes = [
       },
       { path: 'rights', component: SupersuList },
       { path: 'roles', component: RoleList },
+<<<<<<< HEAD
       { path: 'goods', component: ProductList },
       { path: 'categories', component: ProductClassify }
       // { path: 'users', component: QQUsers }
       // { path: 'users', component: QQUsers }
+=======
+      { path: 'categories', component: GoodsCategory },
+      { path: 'params', component: SortingParameter },
+      { path: 'goods', component: ProductList },
+      { path: 'AddProduct', component: AddProduct }
+>>>>>>> gook_cate
     ]
   },
 
