@@ -2,8 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '@/components/QQLogin.vue'
 import QQHome from '@/components/QQHome.vue'
-import Welcome from '@/components/WelCome.vue'
-import QQUsers from '@/components/HomeUsers.vue'
+import Welcome from '@/components/users/WelCome.vue'
+import QQUsers from '@/components/users/HomeUsers.vue'
 
 Vue.use(VueRouter)
 
