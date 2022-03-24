@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import EventBus from '@/components/eventBus.JS'
+import EventBus from '@/components/gook_cate/addgoods/eventBus.JS'
 
 export default {
   props: ['data'],
