@@ -52,11 +52,11 @@
 </template>
 
 <script>
-import ProductAttributes from '@/components/ProductAttributes'
-import WaremessAge from '@/components/WaremessAge'
-import ProductParameter from '@/components/ProductParameter'
-import CommodityImages from '@/components/CommodityImages.vue'
-import RicheDitor from '@/components/RicheDitor.vue'
+import ProductAttributes from '@/components/gook_cate/addgoods/ProductAttributes'
+import WaremessAge from '@/components/gook_cate/addgoods/WaremessAge'
+import ProductParameter from '@/components/gook_cate/addgoods/ProductParameter'
+import CommodityImages from '@/components/gook_cate/addgoods/CommodityImages.vue'
+import RicheDitor from '@/components/gook_cate/addgoods/RicheDitor.vue'
 export default {
   data () {
     return {

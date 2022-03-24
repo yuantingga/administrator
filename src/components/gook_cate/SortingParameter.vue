@@ -96,7 +96,7 @@
 </template>
 
 <script>
-import TabInput from '@/components/TabInput.vue'
+import TabInput from '@/components/gook_cate/TabInput.vue'
 export default {
   created () {
     this.SortingParameterList()

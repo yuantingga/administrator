@@ -8,8 +8,9 @@ import SupersuList from '@/components/SupersuPro/SupersuList.vue'
 import RoleList from '@/components/SupersuPro/RoleList.vue'
 import GoodsCategory from '@/components/gook_cate/GoodsCategory.vue'
 import SortingParameter from '@/components/gook_cate/SortingParameter.vue'
-import ProductList from '@/components/gook_cate/addgoods/ProductList.vue'
-import AddProduct from '@/components/gook_cate/AddProduct.vue'
+import ProductList from '@/components/gook_cate/ProductList.vue'
+import AddProduct from '@/components/gook_cate/addgoods/AddProduct.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
