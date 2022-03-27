@@ -1,17 +1,17 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Login from '@/components/login/QQLogin.vue'
-import QQHome from '@/components/home/QQHome.vue'
-import Welcome from '@/components/home/WelCome.vue'
-import QQUsers from '@/components/home/HomeUsers.vue'
-import SupersuList from '@/components/SupersuPro/SupersuList.vue'
-import RoleList from '@/components/SupersuPro/RoleList.vue'
-import GoodsCategory from '@/components/gook_cate/GoodsCategory.vue'
-import SortingParameter from '@/components/gook_cate/SortingParameter.vue'
-import ProductList from '@/components/gook_cate/ProductList.vue'
-import AddProduct from '@/components/gook_cate/addgoods/AddProduct.vue'
-import OrderList from '@/components/orderlist/OrderList.vue'
-import DataStatistics from '@/components/DataStatistics/DataStatistics.vue'
+const Login = () => import(/* webpackChunkName: "login" */ '@/components/login/QQLogin.vue')
+const QQHome = () => import(/* webpackChunkName: "home" */ '@/components/home/QQHome.vue')
+const WElcome = () => import(/* webpackChunkName: "home" */ '@/components/home/WelCome.vue')
+const QQUsers = () => import(/* webpackChunkName: "home" */ '@/components/home/HomeUsers.vue')
+const SupersuList = () => import(/* webpackChunkName: "SupersuPro" */ '@/components/SupersuPro/SupersuList.vue')
+const RoleList = () => import(/* webpackChunkName: "SupersuPro" */ '@/components/SupersuPro/RoleList.vue')
+const GoodsCategory = () => import(/* webpackChunkName: "gook_cate" */ '@/components/gook_cate/GoodsCategory.vue')
+const SortingParameter = () => import(/* webpackChunkName: "gook_cate" */ '@/components/gook_cate/SortingParameter.vue')
+const ProductList = () => import(/* webpackChunkName: "gook_cate" */ '@/components/gook_cate/ProductList.vue')
+const AddProduct = () => import(/* webpackChunkName: "gook_cate" */ '@/components/gook_cate/addgoods/AddProduct.vue')
+const OrderList = () => import(/* webpackChunkName: "orderList */ '@/components/orderlist/OrderList.vue')
+const DataStatistics = () => import(/* webpackChunkName: "dataStatistics" */ '@/components/DataStatistics/DataStatistics.vue')
 
 Vue.use(VueRouter)
 
@@ -25,7 +25,7 @@ const routes = [
     children: [
       // home组件的搜也
       { path: '/', redirect: 'welcome' },
-      { path: 'welcome', component: Welcome },
+      { path: 'welcome', component: WElcome },
       // 用户管理
       {
         path: 'users',
