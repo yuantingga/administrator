@@ -3,9 +3,8 @@
     <el-row>
       <el-breadcrumb separator-class="el-icon-arrow-right">
         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-        <el-breadcrumb-item>活动管理</el-breadcrumb-item>
-        <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-        <el-breadcrumb-item>活动详情</el-breadcrumb-item>
+        <el-breadcrumb-item>数据报表</el-breadcrumb-item>
+
       </el-breadcrumb>
     </el-row>
 
@@ -18,10 +17,12 @@
 </template>
 
 <script>
-import * as echarts from 'echarts'
+// import * as echarts from 'echarts'
 export default {
-  mounted () {
-    this.setecharts()
+  created () {
+    setTimeout(() => {
+      this.setecharts()
+    })
   },
   data () {
     return {
@@ -31,6 +32,7 @@ export default {
   },
   methods: {
     async setecharts () {
+      // eslint-disable-next-line no-undef
       const Myecharts = echarts.init(document.querySelector('.echarts'))
       const { data: res } = await this.$http.get('reports/type/1')
       console.log(res)

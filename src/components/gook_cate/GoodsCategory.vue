@@ -105,7 +105,7 @@
 export default {
   data () {
     return {
-      loading: true,
+
       // 级联列表的props属性的值
       props: {
         value: 'cat_id',
@@ -155,9 +155,8 @@ export default {
   },
   created () {
     setTimeout(() => {
-      this.loading = false
       this.ProductList()
-    }, 2000)
+    }, 1000)
   },
 
   methods: {

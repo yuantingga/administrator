@@ -34,6 +34,7 @@ axios.interceptors.response.use(function (config) {
 
 // 日期事件格式化
 Vue.prototype.moment = moment
+
 Vue.prototype.$http = axios
 Vue.filter('DateFun', function (val) {
   const d = new Date(val)
@@ -44,11 +45,6 @@ Vue.config.productionTip = false
 
 new Vue({
   router,
-  render: h => h(App),
-  computed: {
-    loadding () {
-      return true
-    }
-  }
+  render: h => h(App)
 
 }).$mount('#app')

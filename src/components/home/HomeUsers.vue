@@ -154,6 +154,7 @@ export default {
     }
 
     return {
+
       rolename: '',
       role: false,
       roleValue: '',
@@ -203,7 +204,7 @@ export default {
     }
   },
   // 获取用户数据生命周期
-  created () {
+  mounted () {
     setTimeout(() => {
       this.DateList()
     }, 1000)

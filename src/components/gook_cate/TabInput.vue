@@ -1,4 +1,4 @@
-<template>
+<template >
   <div>
     <el-tag style="margin: 15px" closable v-for="item in dynamicTags" :key="item"   @close="handleClose(item)">
       {{ item }}
@@ -34,11 +34,9 @@ export default {
     }
   },
   created () {
-    this.Tab()
-    console.log('分类id')
-    console.log(this.classify)
-    console.log('点击的选项数据对象')
-    console.log(this.editDate)
+    setTimeout(() => {
+      this.Tab()
+    }, 1000)
   },
   methods: {
     Tab () {

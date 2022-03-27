@@ -99,7 +99,9 @@
 import TabInput from '@/components/gook_cate/TabInput.vue'
 export default {
   created () {
-    this.SortingParameterList()
+    setTimeout(() => {
+      this.SortingParameterList()
+    }, 1000)
   },
   computed: {
     isDisabled () {

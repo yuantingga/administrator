@@ -42,7 +42,10 @@
         </el-aside>
 
         <el-main >
-        <router-view></router-view>
+        <router-view style="height:100%"  v-loading="loading"
+    element-loading-text="拼命加载中"
+    element-loading-spinner="el-icon-loading"
+    element-loading-background="rgba(255, 255, 255)"></router-view>
         </el-main>
       </el-container>
     </el-container>
@@ -50,11 +53,16 @@
 </template>
 
 <script>
+import Vue from 'vue'
+Vue.prototype.changeTitle = function () {
+  console.log('触发了')
+}
+
 export default {
-  mounted () {
-  },
+
   data () {
     return {
+      loading: true,
       outbtn: false,
       // 实现侧边栏的切换
       bool: false,
@@ -76,11 +84,24 @@ export default {
   created () {
     this.menu()
     this.userrouer = sessionStorage.getItem('keepstate')
+    setTimeout(() => {
+      this.loading = false
+    }, 1000)
   },
   // eslint-disable-next-line no-dupe-keys
   mounted () {
     this.KeepState()
   },
+  watch: {
+    $route: function () {
+      console.log(1111)
+      this.loading = true
+      setTimeout(() => {
+        this.loading = false
+      }, 1000)
+    }
+  },
+
   methods: {
 
     // 用于侧边栏的切换

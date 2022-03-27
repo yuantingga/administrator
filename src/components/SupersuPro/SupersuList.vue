@@ -1,5 +1,5 @@
 <template>
-  <div>
+   <div >
     <!-- 面包屑导航 -->
     <el-row style="margin-bottom: 15px">
       <el-breadcrumb separator-class="el-icon-arrow-right">
@@ -10,13 +10,13 @@
     </el-row>
     <!-- 权限列表 -->
     <el-row>
-      <el-card class="box-card">
-        <template>
-          <el-table :data="list.data" border style="width: 100%">
-            <el-table-column type="index" label="#" width="180"> </el-table-column>
+      <el-card class="box-card" lazy>
+        <template >
+          <el-table  height="550" class="table" :data="list.data" border style="width: 100%">
+            <el-table-column type="index" label="#" > </el-table-column>
 
-            <el-table-column prop="authName" label="权限名称" width="230"> </el-table-column>
-            <el-table-column prop="path" label="路径" width="230"> </el-table-column>
+            <el-table-column prop="authName" label="权限名称" > </el-table-column>
+            <el-table-column prop="path" label="路径"> </el-table-column>
             <el-table-column prop="level" label="权限等级">
               <template scope="scope">
                 <el-tag v-if="scope.row.level == 0" type="">等级零</el-tag>
@@ -36,6 +36,7 @@ export default {
   data () {
     return {
       list: ''
+
     }
   },
   // 获取数据
@@ -58,4 +59,17 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.box-card,.el-card__body{
+height: 600px;
+}
+::-webkit-scrollbar {
+  width: 8px;
+
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 3px;
+}
+</style>

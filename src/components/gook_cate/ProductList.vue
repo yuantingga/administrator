@@ -63,7 +63,9 @@
 <script>
 export default {
   created () {
-    this.getGoodsList()
+    setTimeout(() => {
+      this.getGoodsList()
+    }, 1000)
   },
   data () {
     return {

@@ -1,4 +1,4 @@
-<template>
+<template >
   <div>
     <el-row>
       <el-col>
@@ -41,9 +41,9 @@
                   </template>
                 </el-table-column>
                 <el-table-column label="操作">
-                  <template>
+                  <template slot-scope="scope">
                     <el-button size="mini" type="primary" icon="el-icon-edit" @click="editbutn"> </el-button>
-                    <el-button size="mini" type="success" icon="el-icon-location-outline" @click="logisticsbtn"></el-button>
+                    <el-button size="mini" type="success" icon="el-icon-location-outline" @click="logisticsbtn(scope.row)"></el-button>
                   </template>
                 </el-table-column>
               </el-table>
@@ -71,13 +71,13 @@
       </span>
     </el-dialog>
     <el-dialog title="物流信息" :visible.sync="logistics" width="30%" >
-      <div>
-        <el-timeline :reverse="true">
+<el-descriptions-item label="订单编号">{{order.order_number}}</el-descriptions-item>
+        <el-timeline  :reverse="true">
           <el-timeline-item v-for="(activity, index) in activities" :key="index" :timestamp="activity.timestamp">
             {{ activity.content }}
           </el-timeline-item>
         </el-timeline>
-      </div>
+
       <span slot="footer" class="dialog-footer">
         <el-button @click="logistics = false">取 消</el-button>
         <el-button type="primary" @click="logistics = false">确 定</el-button>
@@ -113,16 +113,17 @@ export default {
       total: 100,
       tabledata: [],
       inputvalue: '',
-      activities: [{
-        content: '没有api无法获取到数据',
-        timestamp: '2018-04-15'
-      }, {
-        content: '只能演示一下时间线使用',
-        timestamp: '2018-04-13'
-      }, {
-        content: '创建成功',
-        timestamp: '2018-04-11'
-      }]
+
+      order: '',
+      activities: [
+        {
+          content: '订单物流',
+          timestamp: '2018-04-15'
+        },
+        {
+          content: '暂无物流信息',
+          timestamp: '2018-04-15'
+        }]
     }
   },
   methods: {
@@ -130,7 +131,8 @@ export default {
       this.editForm.region = ''
       this.editForm.area = ''
     },
-    async logisticsbtn () {
+    async logisticsbtn (scope) {
+      this.order = scope
       const { data: res } = axios.get('http://api.yesapi.cn/api/App/KdAPI/Track')
       console.log(res)
       this.logistics = true
@@ -162,4 +164,6 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+
+</style>
