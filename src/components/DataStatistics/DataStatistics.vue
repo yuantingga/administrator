@@ -22,6 +22,7 @@ export default {
   created () {
     setTimeout(() => {
       this.setecharts()
+      console.log(1111)
     })
   },
   data () {
