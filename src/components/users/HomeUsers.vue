@@ -85,10 +85,7 @@
         <div>
           <el-form ref="selectForm">
             <el-form-item label="分配新角色" prop="region">
-              <el-select v-model="ruleForm.region" placeholder="请选择角色">
-                <el-option v-for="item in ruleForm.select" :key="item.id"
-                :label="item.roleDesc" :value="item.id"></el-option>
-              </el-select>
+
             </el-form-item>
           </el-form>
         </div>
@@ -105,7 +102,7 @@
       <!-- 添加用户的弹出框 -->
 
       <el-row>
-        <el-dialog title="添加用户" :before-close="AddUserClose" @close="AddUserClose" :visible.sync="dialogFormVisible">
+        <el-dialog title="添加" :before-close="AddUserClose" @close="AddUserClose" :visible.sync="dialogFormVisible">
           <el-form :hide-required-asterisk="true" ref="loginFormRef" :model="adduser" :rules="AddUsersRules" status-icon>
             <el-form-item label="用户名" prop="username" :label-width="formLabelWidth">
               <el-input v-model="adduser.username" autocomplete="off"></el-input>
@@ -171,7 +168,7 @@ export default {
       dialogFormVisible: false,
       Users: false,
       ruleForm: {
-        select: '',
+        select: [],
         region: ''
       },
       adduser: {
@@ -376,13 +373,7 @@ export default {
       this.$refs.loginFormRef.resetFields()
     },
     // 分配角色函数
-    async rolepupup (scope) {
-      this.rolename = scope
-      this.role = true
-      const { data: res } = await this.$http.get('roles')
-      console.log(res)
-      this.ruleForm.select = res.data
-    },
+
     // 确认按钮
     async affirmrole () {
       this.role = false

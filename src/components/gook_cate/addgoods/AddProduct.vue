@@ -77,7 +77,7 @@ export default {
     selectTabs (Tabnew, old) {
       if (this.basicInformation.length === 0) {
         this.$message.error('请完善商品基本信息')
-        console.log(11111)
+
         return false
       }
     },
@@ -86,8 +86,8 @@ export default {
     },
     WaremessAgeEvent (val) {
       if (val === null) return
+      console.log(val)
       this.basicInformation = val
-      this.active = 1
       this.TabName = '1'
     },
     Richeblue () {

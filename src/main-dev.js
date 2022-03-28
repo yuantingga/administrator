@@ -5,11 +5,14 @@ import router from './router'
 import '@/assets/css/index.css'
 import axios from 'axios'
 import moment from 'moment'
-import '@/components/plugins/element.js'
+
 import VueQuillEditor from 'vue-quill-editor'
 
 import NProgress from 'nprogress' // for bubble theme
-import 'element-ui/lib/theme-chalk/index.css'
+import ELEMENT from 'element-ui'
+
+Vue.config.productionTip = false
+Vue.use(ELEMENT)// 注意大写
 
 Vue.use(VueQuillEditor /* { default global options } */)
 
