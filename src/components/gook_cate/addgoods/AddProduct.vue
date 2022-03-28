@@ -40,7 +40,7 @@
           </el-tab-pane>
           <el-tab-pane  name="4"  label="商品内容">
             <template>
-            <RicheDitor @Richeblue="Richeblue"  @RicheAddBtn="Richeditor"></RicheDitor>
+            <RicheDitor @Richeblue="Richeblue" @RicheAddBtn="Richeditor"></RicheDitor>
 
             </template>
           </el-tab-pane>
@@ -86,9 +86,10 @@ export default {
     },
     WaremessAgeEvent (val) {
       if (val === null) return
-      console.log(val)
+
       this.basicInformation = val
       this.TabName = '1'
+      this.active = 1
     },
     Richeblue () {
       this.active = 5
@@ -96,6 +97,7 @@ export default {
     async Richeditor () {
       this.active = 6
     }
+
   },
   components: {
     WaremessAge,

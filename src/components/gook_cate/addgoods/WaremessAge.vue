@@ -23,7 +23,6 @@
 </template>
 
 <script>
-// eslint-disable-next-line no-unused-vars
 import EventBus from '@/components/gook_cate/addgoods/eventBus.JS'
 export default {
   props: ['good_name'],
@@ -89,7 +88,6 @@ export default {
         console.log(e)
       }
 
-      console.log(this.AddProduct)
       this.$emit('SonChangeData', this.AddProduct)
       EventBus.$emit('WaremessAge', this.AddProduct)
     },
