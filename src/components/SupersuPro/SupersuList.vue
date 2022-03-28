@@ -12,7 +12,7 @@
     <el-row>
       <el-card class="box-card" lazy>
         <template >
-          <el-table  height="550" class="table" :data="list.data" border style="width: 100%">
+          <el-table  class="table" :data="list.data" border style="width: 100%">
             <el-table-column type="index" label="#" > </el-table-column>
 
             <el-table-column prop="authName" label="权限名称" > </el-table-column>
@@ -60,8 +60,9 @@ export default {
 </script>
 
 <style>
-.box-card,.el-card__body{
-height: 600px;
+.table{
+height: 500px;
+overflow: auto;
 }
 ::-webkit-scrollbar {
   width: 8px;

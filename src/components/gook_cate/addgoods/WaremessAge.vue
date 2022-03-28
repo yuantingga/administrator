@@ -1,18 +1,18 @@
 <template>
   <div>
     <el-form :model="AddProduct" :rules="ProductFromRules" ref="WaremessForm" label-width="100px" class="demo-ruleForm">
-      <el-form-item  @blur="handleChange" label="商品名称" prop="goods_name">
-        <el-input v-model="AddProduct.goods_name"></el-input>
+      <el-form-item   label="商品名称" prop="goods_name">
+        <el-input @blur="handleChange" v-model="AddProduct.goods_name"></el-input>
       </el-form-item>
 
       <el-form-item label="商品价格" prop="goods_price">
-        <el-input type="age" @blur="handleChange"  v-model="AddProduct.goods_price"></el-input>
+        <el-input @blur="handleChange" type="age"  v-model="AddProduct.goods_price"></el-input>
       </el-form-item>
       <el-form-item label="商品重量" prop="goods_weight">
-        <el-input  @blur="handleChange" v-model="AddProduct.goods_weight"></el-input>
+        <el-input @blur="handleChange"  v-model="AddProduct.goods_weight"></el-input>
       </el-form-item>
       <el-form-item label="商品数量" prop="goods_number">
-        <el-input  @blur="handleChange" v-model="AddProduct.goods_number"></el-input>
+        <el-input @blur="handleChange" v-model="AddProduct.goods_number"></el-input>
       </el-form-item>
       <el-form-item label="商品分类">
         <el-cascader  v-model="AddProduct.PrroductClassifyArr" :options="productClassifyList"
@@ -77,14 +77,19 @@ export default {
   methods: {
 
     async handleChange () {
-      this.$refs.WaremessForm.validate().then(value => {
-        if (this.AddProduct.PrroductClassifyArr.length !== 3) {
-          this.AddProduct.PrroductClassifyArr = []
-          return
-        }
-        this.$emit('SonChangeData', this.AddProduct)
-        EventBus.$emit('WaremessAge', this.AddProduct)
-      }).catch()
+      if (this.AddProduct.PrroductClassifyArr.length !== 3) {
+        this.AddProduct.PrroductClassifyArr = []
+        return
+      }
+      try {
+        // eslint-disable-next-line no-unused-vars
+        const boo = await this.$refs.WaremessForm.validate()
+      } catch (e) {
+        console.log(e)
+      }
+
+      this.$emit('SonChangeData', this.AddProduct)
+      EventBus.$emit('WaremessAge', this.AddProduct)
     },
     async classifyList () {
       const { data: res } = await this.$http.get('categories')

@@ -74,29 +74,6 @@
           </el-table-column>
         </el-table>
       </el-row>
-      <!-- 分享校色弹框 -->
-      <el-dialog @close="closeRole" title="分享角色" :visible.sync="role" width="50%" >
-        <div class="user">
-          <span>用户名称: {{ rolename.username }}</span>
-        </div>
-        <div class="user">
-          <span>角色名称: {{ rolename.role_name }}</span>
-        </div>
-        <div>
-          <el-form ref="selectForm">
-            <el-form-item label="分配新角色" prop="region">
-              <el-select v-model="ruleForm.region" placeholder="请选择角色">
-                <el-option v-for="item in ruleForm.select" :key="item.id"
-                :label="item.roleDesc" :value="item.id"></el-option>
-              </el-select>
-            </el-form-item>
-          </el-form>
-        </div>
-        <span slot="footer" class="dialog-footer">
-          <el-button @click="role = false">取 消</el-button>
-          <el-button type="primary" @click="affirmrole">确 定</el-button>
-        </span>
-      </el-dialog>
 
       <!-- 分页控件 -->
       <el-row style="margin-top: 15px">
@@ -105,7 +82,7 @@
       <!-- 添加用户的弹出框 -->
 
       <el-row>
-        <el-dialog title="添加用户" :before-close="AddUserClose" @close="AddUserClose" :visible.sync="dialogFormVisible">
+        <el-dialog title="添加" :before-close="AddUserClose" @close="AddUserClose" :visible.sync="dialogFormVisible">
           <el-form :hide-required-asterisk="true" ref="loginFormRef" :model="adduser" :rules="AddUsersRules" status-icon>
             <el-form-item label="用户名" prop="username" :label-width="formLabelWidth">
               <el-input v-model="adduser.username" autocomplete="off"></el-input>
@@ -171,7 +148,7 @@ export default {
       dialogFormVisible: false,
       Users: false,
       ruleForm: {
-        select: '',
+        select: [],
         region: ''
       },
       adduser: {
@@ -209,6 +186,9 @@ export default {
     }, 1000)
   },
   methods: {
+    rolepupup () {
+      console.log(11111)
+    },
     // 修改用户按钮
     UsersModify (scope) {
       this.Users = true
@@ -368,7 +348,6 @@ export default {
       }
     },
     closeRole () {
-      this.ruleForm = ''
       this.$refs.selectForm.resetFields()
     },
     AddUserClose () {
@@ -376,13 +355,7 @@ export default {
       this.$refs.loginFormRef.resetFields()
     },
     // 分配角色函数
-    async rolepupup (scope) {
-      this.rolename = scope
-      this.role = true
-      const { data: res } = await this.$http.get('roles')
-      console.log(res)
-      this.ruleForm.select = res.data
-    },
+
     // 确认按钮
     async affirmrole () {
       this.role = false
