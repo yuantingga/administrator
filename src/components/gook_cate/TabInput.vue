@@ -34,9 +34,7 @@ export default {
     }
   },
   created () {
-    setTimeout(() => {
-      this.Tab()
-    }, 1000)
+    this.Tab()
   },
   methods: {
     Tab () {

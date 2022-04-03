@@ -176,14 +176,13 @@ export default {
     }
   },
   created () {
-    setTimeout(() => {
-      this.Rokleslist()
-    }, 1000)
+    this.Rokleslist()
   },
   methods: {
     // 删除确定
     async  deletecole (scope) {
       try {
+        // eslint-disable-next-line no-var
         var promis = await this.$confirm('是否确认删除该角色?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
@@ -270,6 +269,7 @@ export default {
       console.log(rolesID.children[0])
       console.log(rightsId)
       try {
+        // eslint-disable-next-line no-var
         var confimdata = await this.$confirm('是否删除该权限?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',

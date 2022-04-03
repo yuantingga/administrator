@@ -154,9 +154,7 @@ export default {
     }
   },
   created () {
-    setTimeout(() => {
-      this.ProductList()
-    }, 1000)
+    this.ProductList()
   },
 
   methods: {

@@ -1,3 +1,5 @@
+/* eslint-disable no-var */
+/* eslint-disable */
 <template>
   <div>
     <!-- 面包屑导航 -->
@@ -181,9 +183,7 @@ export default {
   },
   // 获取用户数据生命周期
   created () {
-    setTimeout(() => {
-      this.DateList()
-    }, 1000)
+    this.DateList()
   },
   methods: {
     rolepupup () {
@@ -323,6 +323,8 @@ export default {
           cancelButtonText: '取消',
           type: 'warning'
         })
+
+        // eslint-disable-next-line no-var
         var kk = await inquiry
       } catch (e) {
         console.log(1111)

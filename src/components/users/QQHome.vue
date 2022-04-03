@@ -51,10 +51,10 @@
 
 <script>
 export default {
-  mounted () {
-  },
+
   data () {
     return {
+      loading: true,
       outbtn: false,
       // 实现侧边栏的切换
       bool: false,

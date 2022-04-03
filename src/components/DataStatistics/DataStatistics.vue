@@ -21,10 +21,7 @@
 // import * as echarts from 'echarts'
 export default {
   created () {
-    setTimeout(() => {
-      this.setecharts()
-      console.log(1111)
-    })
+    this.setecharts()
   },
   data () {
     return {
