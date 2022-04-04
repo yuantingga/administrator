@@ -64,13 +64,5 @@ export default {
 height: 500px;
 overflow: auto;
 }
-::-webkit-scrollbar {
-  width: 8px;
 
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: #ccc;
-  border-radius: 3px;
-}
 </style>
