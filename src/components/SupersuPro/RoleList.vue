@@ -63,7 +63,7 @@
         </el-row>
         <!-- 分配用户权限 -->
         <el-dialog title="分配权限" @close="closeDefKeys" :visible.sync="dialogVisible" width="50%"
-        :before-close="handleClose">
+       >
           <el-tree ref="treeRef" :data="TreeStructuredData" show-checkbox node-key="id"
           :default-expand-all="true" :default-checked-keys="defKeys" :props="defaultProps"> </el-tree>
 
@@ -73,7 +73,7 @@
           </span>
         </el-dialog>
         <!-- 添加角色 -->
-        <el-dialog @close="closeform" title="添加角色" :visible.sync="Addrole" width="50%" :before-close="handleClose">
+        <el-dialog @close="closeform" title="添加角色" :visible.sync="Addrole" width="50%" >
           <!-- 角色表单 -->
 
           <div>
@@ -97,7 +97,7 @@
         <!-- 编辑角色弹窗 -->
 
         <el-dialog title="编辑角色" @close="editClose" :visible.sync="compileRoles"
-         width="50%" :before-close="handleClose">
+         width="50%" >
 
           <div>
             <el-form :hide-required-asterisk="true" :model="compile"
