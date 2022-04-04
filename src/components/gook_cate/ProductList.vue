@@ -28,7 +28,7 @@
 
         <el-row>
           <el-col>
-            <el-table :data="tableData"  border style="width: 100%">
+            <el-table height="510" :data="tableData"  border style="width: 100%">
               <el-table-column prop="goods_name" label="商品名称" width="400"> </el-table-column>
               <el-table-column prop="goods_price" label="商品价格(元)" width="180"> </el-table-column>
               <el-table-column prop="goods_weight" label="商品重量"> </el-table-column>

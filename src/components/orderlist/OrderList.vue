@@ -24,7 +24,7 @@
               </el-form>
             </el-col>
             <el-col style="margin: 15px 0">
-              <el-table :data="tabledata" border style="width: 100%">
+              <el-table height="470"  :data="tabledata" border style="width: 100%">
                 <el-table-column type="index" label="#"></el-table-column>
                 <el-table-column prop="order_number" label="订单编号" width="180"> </el-table-column>
                 <el-table-column prop="order_price" label="订单价格" width="180"> </el-table-column>
