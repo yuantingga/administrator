@@ -17,12 +17,14 @@ Vue.use(VueQuillEditor /* { default global options } */)
 Vue.prototype.moment = moment
 
 Vue.prototype.$http = axios
+
 // 请求根路由
 axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/'
 // 请求拦截器
 axios.interceptors.request.use(function (config) {
   config.headers.Authorization = sessionStorage.getItem('token')
   NProgress.start()
+
   return config
 }, function (err) {
   console.log(err)

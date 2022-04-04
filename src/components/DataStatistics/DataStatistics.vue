@@ -11,6 +11,7 @@
 
     <el-row style="margin: 15px 0">
       <el-card class="box-card">
+
         <div class="echarts"></div>
       </el-card>
     </el-row>
@@ -18,10 +19,17 @@
 </template>
 
 <script>
-// import * as echarts from 'echarts'
+import * as echarts from 'echarts'
 export default {
   created () {
-    this.setecharts()
+    this.$http.get('reports/type/1').then((result) => {
+      const res = result.data
+      this.legend = res.data.legend
+      this.series = res.data.series
+      this.setecharts()
+    }).catch((err) => {
+      console.log(err)
+    })
   },
   data () {
     return {
@@ -31,12 +39,7 @@ export default {
   },
   methods: {
     async setecharts () {
-      // eslint-disable-next-line no-undef
       const Myecharts = echarts.init(document.querySelector('.echarts'))
-      const { data: res } = await this.$http.get('reports/type/1')
-      console.log(res)
-      this.legend = res.data.legend
-      this.series = res.data.series
 
       const option = {
         title: {

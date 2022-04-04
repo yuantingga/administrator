@@ -33,7 +33,6 @@ NProgress.configure({ showSpinner: false })
 
 axios.interceptors.response.use(function (config) {
   NProgress.done()
-  console.log(config)
 
   return config
 }, function (err) {
