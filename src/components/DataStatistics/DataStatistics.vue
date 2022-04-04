@@ -26,6 +26,8 @@ export default {
       const res = result.data
       this.legend = res.data.legend
       this.series = res.data.series
+      this.time = res.data.xAxis[0].data
+      this.yAxis = res.data.yAxis
       this.setecharts()
     }).catch((err) => {
       console.log(err)
@@ -34,7 +36,9 @@ export default {
   data () {
     return {
       legend: [],
-      series: []
+      series: [],
+      time: [],
+      yAxis: []
     }
   },
   methods: {
@@ -70,14 +74,10 @@ export default {
           {
             type: 'category',
             boundaryGap: false,
-            data: ['2017-12-28', '2017-12-18', '2017-12-5', '2017-12-2', '2017-12-1']
+            data: this.time
           }
         ],
-        yAxis: [
-          {
-            type: 'value'
-          }
-        ],
+        yAxis: this.yAxis,
         series: this.series
       }
       Myecharts.setOption(option)
