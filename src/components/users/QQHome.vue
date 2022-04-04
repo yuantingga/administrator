@@ -1,3 +1,4 @@
+
 <template>
   <div class="home">
     <el-container style="height: 100%">
@@ -19,8 +20,9 @@
           需要注意在el-submenu 组件开始循环，，以及index属性的值不能进行重复
 
            -->
-          <el-menu :router="true"  :collapse="bool" :default-active="userrouer" class="el-menu-vertical-demo"
+          <!-- <el-menu :router="true"  :collapse="bool" :default-active="userrouer" class="el-menu-vertical-demo" -->
 
+          <el-menu :router="true" :collapse-transition="false" :collapse="bool" :default-active="userrouer" class="el-menu-vertical-demo"
           background-color="#333" text-color="#fff" active-text-color="#409EFF" :unique-opened='true'>
 
             <el-submenu   v-for="(item) in list" :key="item.id"   :index="item['id']+''">

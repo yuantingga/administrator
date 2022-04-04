@@ -73,7 +73,7 @@
           </span>
         </el-dialog>
         <!-- 添加角色 -->
-        <el-dialog @close="closeform" title="添加角色" :visible.sync="Addrole" width="50%">
+        <el-dialog @close="closeform" title="添加角色" :visible.sync="Addrole" width="50%" >
           <!-- 角色表单 -->
 
           <div>

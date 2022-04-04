@@ -368,7 +368,8 @@ export default {
       }
     },
     closeRole () {
-      this.ruleForm = ''
+      this.ruleForm.select = ''
+      this.ruleForm.region = ''
       this.$refs.selectForm.resetFields()
     },
     AddUserClose () {

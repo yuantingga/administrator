@@ -76,6 +76,29 @@
           </el-table-column>
         </el-table>
       </el-row>
+      <!-- 分享校色弹框 -->
+      <el-dialog @close="closeRole" title="分享角色" :visible.sync="role" width="50%" >
+        <div class="user">
+          <span>用户名称: {{ rolename.username }}</span>
+        </div>
+        <div class="user">
+          <span>角色名称: {{ rolename.role_name }}</span>
+        </div>
+        <div>
+          <el-form ref="selectForm">
+            <el-form-item label="分配新角色" prop="region">
+              <el-select  v-model="ruleForm.region" placeholder="请选择角色">
+                <el-option  v-for="item in ruleForm.select" :key="item.id"
+                :label="item.roleDesc" :value="item.id"></el-option>
+              </el-select>
+            </el-form-item>
+          </el-form>
+        </div>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="role = false">取 消</el-button>
+          <el-button type="primary" @click="affirmrole">确 定</el-button>
+        </span>
+      </el-dialog>
 
       <!-- 分页控件 -->
       <el-row style="margin-top: 15px">
@@ -133,6 +156,7 @@ export default {
     }
 
     return {
+      loading: true,
       rolename: '',
       role: false,
       roleValue: '',
@@ -186,9 +210,7 @@ export default {
     this.DateList()
   },
   methods: {
-    rolepupup () {
-      console.log(11111)
-    },
+
     // 修改用户按钮
     UsersModify (scope) {
       this.Users = true
@@ -350,6 +372,8 @@ export default {
       }
     },
     closeRole () {
+      this.ruleForm.region = ''
+      this.ruleForm.select = ''
       this.$refs.selectForm.resetFields()
     },
     AddUserClose () {
@@ -358,6 +382,14 @@ export default {
     },
     // 分配角色函数
 
+    async rolepupup (scope) {
+      this.rolename = scope
+      this.role = true
+      const { data: res } = await this.$http.get('roles')
+      console.log(res)
+      this.ruleForm.select = res.data
+      this.loading = false
+    },
     // 确认按钮
     async affirmrole () {
       this.role = false
