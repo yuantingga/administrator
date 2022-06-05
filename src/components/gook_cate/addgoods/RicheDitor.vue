@@ -1,9 +1,12 @@
 <template>
   <div class="aaa">
 
-  <el-row class="text">
+  <!-- <el-row class="text">
     <quill-editor @blur="Rich"  v-model="editor"></quill-editor>
-  </el-row>
+  </el-row> -->
+      <div id="div1">
+        <p></p>
+      </div>
   <el-row>
     <el-button style="margin:15px" @click="AddCommodity" type="primary">添加商品</el-button>
 
@@ -13,7 +16,7 @@
 
 <script>
 import EventBus from '@/components/gook_cate/addgoods/eventBus.JS'
-
+import E from 'wangeditor'
 export default {
   created () {
     EventBus.$on('WaremessAge', (val) => {
@@ -78,6 +81,11 @@ export default {
     }
   },
   methods: {
+    init () {
+      const editor = new E('#div1')
+      // 或者 const editor = new E( document.getElementById('div1') )
+      editor.create()
+    },
     Rich () {
       this.$emit('Richeblue')
     },
@@ -99,6 +107,9 @@ export default {
       this.$emit('RicheAddBtn', '')
       this.$router.push('goods')
     }
+  },
+  mounted () {
+    this.init()
   }
 }
 </script>

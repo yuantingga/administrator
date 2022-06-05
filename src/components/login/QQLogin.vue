@@ -66,7 +66,7 @@ export default {
           {
             required: true, message: '请输入密码', trigger: 'blur'
           },
-          { min: 6, max: 10, message: '请输入6-10位字符', trigger: 'blur' }
+          { min: 5, max: 10, message: '请输入6-10位字符', trigger: 'blur' }
         ]
         // required 必填项， message提示信息，trigger触发校验事件
       }

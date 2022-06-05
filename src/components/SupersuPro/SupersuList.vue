@@ -12,7 +12,7 @@
     <el-row>
       <el-card class="box-card" lazy>
         <template >
-          <el-table class=" table" height="500"   :data="list.data" border style="width: 100%">
+          <el-table class=" table" height="600"   :data="list.data" border style="width: 100%">
             <el-table-column type="index" label="#" > </el-table-column>
 
             <el-table-column prop="authName" label="权限名称" > </el-table-column>
