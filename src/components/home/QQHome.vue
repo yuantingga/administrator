@@ -11,7 +11,7 @@
       </el-header>
 
       <el-container>
-  <!-- 侧边栏 -->
+       <!-- 侧边栏 -->
         <el-aside ref="aside"  :span="12" :width="bool?'64px':'200px'" style="background: #333" >
         <div class="menu-toggle"><i class="el-icon-s-unfold" @click="toggle"> </i ></div>
           <!-- 一级菜单，使用的是menu组件,双重for循环进行遍历，拿到的列表数据
@@ -22,20 +22,23 @@
           <el-menu :router="true"  :collapse="bool" :default-active="userrouer" class="el-menu-vertical-demo"
 
           background-color="#333" text-color="#fff" active-text-color="#409EFF" :unique-opened='true'>
-
+           <!-- 第一层for循环 -->
             <el-submenu   v-for="(item) in list" :key="item.id"   :index="item['id']+''">
+            <!-- 插槽的方式插入图标 -->
               <template slot="title" >
 
                 <i :class="iconName[item.id]" style="margin-right:20px"></i>
-
+                <!-- 最外层的选项文字 -->
                 <span>{{item.authName}}</span>
               </template>
+
                 <!-- 二级菜单循环,当点击时需要修改路由实现跳转  -->
               <el-menu-item-group v-for="(iii) in item.children" :key="iii.id">
                 <el-menu-item   @click="KeepState('/home/'+iii.path)" :index="'/home/'+iii.path">
-
+                <!-- 点击二级菜单 进行路由跳转 保存点击状态进行刷新也不会丢失导航选项的选择选项状态 -->
                  <i class="el-icon-menu"></i>{{iii.authName}}</el-menu-item>
               </el-menu-item-group>
+
             </el-submenu>
           </el-menu>
 
@@ -56,7 +59,8 @@ export default {
   data () {
     return {
 
-      outbtn: false,
+      // outbtn: false,
+
       // 实现侧边栏的切换
       bool: false,
       // 用于存储axios中的数据
@@ -82,9 +86,6 @@ export default {
   mounted () {
     this.KeepState()
   },
-  watch: {
-
-  },
 
   methods: {
 
@@ -97,38 +98,38 @@ export default {
       sessionStorage.clear()
       this.$router.replace('/login')
     },
+
     // 退出按钮确认弹窗
     open () {
       this.$confirm('确认退出?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
+      }).then(() => {
+        setTimeout(() => {
+          this.$message({
+            type: 'success',
+            message: '退出成功!'
+          })
+          this.$router.replace('/login')
+        }, 2000)
+      }).catch((e) => {
+        this.$message({
+          type: 'info',
+          message: '已取消'
+        })
       })
-        .then(() => {
-          this.outbtn = true
-
-          setTimeout(() => {
-            this.outbtn = false
-            this.$message({
-              type: 'success',
-              message: '退出成功!'
-            })
-            this.$router.replace('/login')
-          }, 2000)
-        })
-        .catch((e) => {
-          console.log(e)
-        })
     },
     // 获取列表数据axios请求
     async menu () {
-      const { data: res } = await this.$http.get('menus')
+      const { data: res } = await this.$http.get('/api/menus')
       if (res.meta.status !== 200) return this.$message.error(res.meta.msg)
       this.list = res.data
     },
     // 点击选项保持选项选中状态，刷新也不会进行丢失
     KeepState (val) {
       // 将val的值存储在本地缓存中，此时刷新也不会丢失状态否则关闭窗口
+      // 点击二级菜单 进行路由跳转 保存点击状态进行刷新也不会丢失导航选项的选择选项状态
       sessionStorage.setItem('keepstate', val)
       this.userrouer = sessionStorage.getItem('keepstate')
     }

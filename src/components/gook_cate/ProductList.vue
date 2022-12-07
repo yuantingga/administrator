@@ -85,7 +85,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(async () => {
-        const { data: res } = await this.$http.delete(`goods/${scope.goods_id}`)
+        const { data: res } = await this.$http.delete(`/api/goods/${scope.goods_id}`)
         console.log(res)
         if (res.meta.status !== 200) return this.$message.error('删除失败')
         this.$message({
@@ -123,7 +123,7 @@ export default {
       }
       console.log(obj)
 
-      const { data: res } = await this.$http.get('goods', {
+      const { data: res } = await this.$http.get('/api/goods', {
         params: obj
       })
       console.log(res)

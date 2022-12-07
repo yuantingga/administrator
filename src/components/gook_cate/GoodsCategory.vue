@@ -177,7 +177,7 @@ export default {
         this.$message.error('分类名称不能为空')
       } else {
         console.log(this.EditProductName)
-        const { data: res } = await this.$http.put(`categories/${this.EditProductName.cat_id}`, { cat_name: this.EditProductName.cat_name })
+        const { data: res } = await this.$http.put(`/api/categories/${this.EditProductName.cat_id}`, { cat_name: this.EditProductName.cat_name })
         console.log(res)
         if (res.meta.status !== 200) return
 
@@ -208,7 +208,7 @@ export default {
       })
         .then(async () => {
           console.log(id)
-          const { data: res } = await this.$http.delete(`categories/${id}`)
+          const { data: res } = await this.$http.delete(`/api/categories/${id}`)
           console.log(res)
           if (res.meta.status !== 200) return this.$message.error('删除失败')
           this.$message({
@@ -228,7 +228,7 @@ export default {
     // 获取下拉选项的数据，也就是添加按钮的级联菜单
     async AddProductEvent (scope) {
       this.AddProduct = true
-      const { data: res } = await this.$http.get('categories', {
+      const { data: res } = await this.$http.get('/api/categories', {
         params: { type: 2, pagenum: this.currentPage4, pagesize: this.currentPage }
       })
       this.AddProductList = res.data.result
@@ -252,7 +252,7 @@ export default {
       }
 
       console.log(obj)
-      const { data: res } = await this.$http.post('categories', obj)
+      const { data: res } = await this.$http.post('/api/categories', obj)
       console.log(res)
       if (res.meta.status === 201) {
         this.$message({
@@ -279,7 +279,7 @@ export default {
 
     // 获取分类数据，进行渲染表格
     async ProductList () {
-      const { data: res } = await this.$http.get('categories', {
+      const { data: res } = await this.$http.get('/api/categories', {
         params: { pagenum: this.currentPage4, pagesize: this.currentPage }
       })
       this.tableData = res.data.result

@@ -12,13 +12,12 @@
       </el-header>
 
       <el-container>
-  <!-- 侧边栏 -->
+        <!-- 侧边栏 -->
         <el-aside ref="aside"  :span="12" :width="bool?'64px':'200px'" style="background: #333" >
         <div class="menu-toggle"><i class="el-icon-s-unfold" @click="toggle"> </i ></div>
           <!-- 一级菜单，使用的是menu组件,双重for循环进行遍历，拿到的列表数据
           进行渲染侧边栏导航区域，for循环外层是一级菜单，for里层是二级菜单，
           需要注意在el-submenu 组件开始循环，，以及index属性的值不能进行重复
-
            -->
           <!-- <el-menu :router="true"  :collapse="bool" :default-active="userrouer" class="el-menu-vertical-demo" -->
 
@@ -119,7 +118,7 @@ export default {
     },
     // 获取列表数据axios请求
     async menu () {
-      const { data: res } = await this.$http.get('menus')
+      const { data: res } = await this.$http.get('/api/menus')
       if (res.meta.status !== 200) return this.$message.error(res.meta.msg)
       this.list = res.data
     },

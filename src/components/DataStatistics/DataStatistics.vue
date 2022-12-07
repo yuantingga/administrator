@@ -22,7 +22,7 @@
 import * as echarts from 'echarts'
 export default {
   created () {
-    this.$http.get('reports/type/1').then((result) => {
+    this.$http.get('/api/reports/type/1').then((result) => {
       const res = result.data
       this.legend = res.data.legend
       this.series = res.data.series

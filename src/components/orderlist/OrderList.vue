@@ -141,7 +141,7 @@ export default {
       this.edit = true
     },
     async getlistDate () {
-      const { data: res } = await this.$http.get('orders', {
+      const { data: res } = await this.$http.get('/api/orders', {
         params: {
           pagenum: this.currentPage4,
           pagesize: this.listNum

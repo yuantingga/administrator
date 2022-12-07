@@ -197,7 +197,7 @@ export default {
           type: 'success',
           message: '删除成功'
         })
-        const { data: res } = await this.$http.delete(`roles/${scope.id}`)
+        const { data: res } = await this.$http.delete(`/api/roles/${scope.id}`)
         console.log(res)
         this.Rokleslist()
       }
@@ -210,7 +210,7 @@ export default {
     },
     // 编辑的确认按钮
     async EditConfirmation () {
-      const { data: res } = await this.$http.put(`roles/${this.edit.id}`, this.compile)
+      const { data: res } = await this.$http.put(`/api/roles/${this.edit.id}`, this.compile)
       console.log(res)
       if (res.meta.status !== 200) return this.$message.error('修改失败')
       this.$message({
@@ -233,7 +233,7 @@ export default {
       const verify = await this.$refs.rolefrom.validate()
       // 添加角色数据
       if (!verify) return
-      const { data: res } = await this.$http.post('roles', this.ruleForm)
+      const { data: res } = await this.$http.post('/api/roles', this.ruleForm)
 
       if (res.meta.status !== 201) return this.$message.error('添加失败')
       this.$message({
@@ -260,7 +260,7 @@ export default {
     },
     // 获取角色列表
     async Rokleslist () {
-      const { data: res } = await this.$http.get('roles')
+      const { data: res } = await this.$http.get('/api/roles')
       this.list = res.data
     },
 
@@ -282,7 +282,7 @@ export default {
         })
       }
       if (confimdata === 'confirm') {
-        const { data: res } = await this.$http.delete(`roles/${rolesID.id}/rights/${rightsId}`)
+        const { data: res } = await this.$http.delete(`/api/roles/${rolesID.id}/rights/${rightsId}`)
 
         if (res.meta.status !== 200) return
         rolesID.children = res.data
@@ -311,7 +311,7 @@ export default {
         return arr
       }
       // 选中预不选中的修改
-      const { data: res } = await this.$http.get('rights/tree')
+      const { data: res } = await this.$http.get('/api/rights/tree')
       // 用于点击删除都选项的消失而不是直接刷新
       this.roles = list
       this.defKeys = getlist(list.children, [])
@@ -323,7 +323,7 @@ export default {
       this.dialogVisible = false
       const keys = [...this.$refs.treeRef.getCheckedKeys(), ...this.$refs.treeRef.getHalfCheckedKeys()]
 
-      const { data: res } = await this.$http.post(`roles/${this.roles.id}/rights/`, { rids: keys.join(',') })
+      const { data: res } = await this.$http.post(`/api/roles/${this.roles.id}/rights/`, { rids: keys.join(',') })
 
       if (res.meta.status !== 200) return this.$message(new Error('分配失败'))
       this.$message({

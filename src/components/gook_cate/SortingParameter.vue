@@ -174,7 +174,7 @@ export default {
     // 编辑确认按钮 进行添加参数或是属性
     async editConfirm () {
       if (!(await this.$refs.editForm.validate())) return
-      const { data: res } = await this.$http.put(`categories/${this.SortSelection[2]}/attributes/${this.editDate.attr_id}`, { attr_name: this.editForm.attr_name, attr_sel: this.activeName })
+      const { data: res } = await this.$http.put(`/api/categories/${this.SortSelection[2]}/attributes/${this.editDate.attr_id}`, { attr_name: this.editForm.attr_name, attr_sel: this.activeName })
       console.log(res)
       if (res.meta.status !== 200) return this.$message.error('修改失败')
       this.$message({
@@ -206,7 +206,7 @@ export default {
             type: 'success',
             message: '删除成功!'
           })
-          const { data: res } = await this.$http.delete(`categories/${this.SortSelection[2]}/attributes/${scope.attr_id}`)
+          const { data: res } = await this.$http.delete(`/api/categories/${this.SortSelection[2]}/attributes/${scope.attr_id}`)
           console.log(res)
           this.MerchandiseLedger()
         })
@@ -228,14 +228,14 @@ export default {
         attr_name: this.AddDialogForm.attr_name,
         attr_sel: this.activeName
       }
-      const { data: res } = await this.$http.post(`categories/${this.SortSelection[2]}/attributes`, obj)
+      const { data: res } = await this.$http.post(`/api/categories/${this.SortSelection[2]}/attributes`, obj)
       console.log(res)
       this.CategoryList()
       this.AddDialog = false
     },
     // 最初渲染表格的数据
     async CategoryList () {
-      const { data: res } = await this.$http.get(`categories/${this.SortSelection[2]}/attributes`, {
+      const { data: res } = await this.$http.get(`/api/categories/${this.SortSelection[2]}/attributes`, {
         params: { sel: this.activeName }
       })
       this.SonlistTag = res.data
@@ -263,7 +263,7 @@ export default {
     },
     // 用于获取级联选择器的分类
     async SortingParameterList () {
-      const { data: res } = await this.$http.get('categories')
+      const { data: res } = await this.$http.get('/api/categories')
       this.SortingList = res.data
     }
   },

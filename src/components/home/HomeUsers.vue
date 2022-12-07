@@ -228,7 +228,7 @@ export default {
       delete this.Modify.username
       console.log(this.Modify)
       console.log(this.Modify.id)
-      const { data: res } = await this.$http.put(`users/${this.Modify.id}`, this.Modify)
+      const { data: res } = await this.$http.put(`/api/users/${this.Modify.id}`, this.Modify)
       console.log(res)
       if (res.meta.status !== 200) return this.$message.error('修改失败')
       this.$message({
@@ -257,7 +257,7 @@ export default {
       if (!aa) {
         this.$message.error('请重新输入')
       }
-      const { data: res } = await this.$http.post('users', this.adduser)
+      const { data: res } = await this.$http.post('/api/users', this.adduser)
       console.log(res)
       console.log(res.meta.status)
       if (res.meta.status !== 201) {
@@ -284,7 +284,7 @@ export default {
     },
     // 获取用户数据函数
     async DateList () {
-      const { data: res } = await this.$http.get('users', {
+      const { data: res } = await this.$http.get('/api/users', {
         params: {
           query: this.input2,
           // pagenum: 1,
@@ -305,7 +305,7 @@ export default {
       console.log(scorp)
       console.log(scorp.id)
       // 发起请求
-      const { data: res } = await this.$http.put(`users/${scorp.id}/state/${scorp.mg_state}`)
+      const { data: res } = await this.$http.put(`/api/users/${scorp.id}/state/${scorp.mg_state}`)
       if (res.meta.status !== 200) {
         this.open4()
         setTimeout(() => {
@@ -353,7 +353,7 @@ export default {
       }
 
       if (kk === 'confirm') {
-        const { data: res } = await this.$http.delete(`users/${scope.id}`)
+        const { data: res } = await this.$http.delete(`/api/users/${scope.id}`)
 
         if (res.meta.status === 200) {
           console.log(11111)
@@ -380,7 +380,7 @@ export default {
     async rolepupup (scope) {
       this.rolename = scope
       this.role = true
-      const { data: res } = await this.$http.get('roles')
+      const { data: res } = await this.$http.get('/api/roles')
       console.log(res)
       this.ruleForm.select = res.data
     },
@@ -392,7 +392,7 @@ export default {
         this.$message.error('请输入角色')
       }
       console.log(this.ruleForm.region)
-      const { data: res } = await this.$http.put(`users/${this.rolename.id}/role`, {
+      const { data: res } = await this.$http.put(`/api/users/${this.rolename.id}/role`, {
         rid: this.ruleForm.region
       })
       console.log(res)

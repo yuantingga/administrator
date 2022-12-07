@@ -92,7 +92,7 @@ export default {
       EventBus.$emit('WaremessAge', this.AddProduct)
     },
     async classifyList () {
-      const { data: res } = await this.$http.get('categories')
+      const { data: res } = await this.$http.get('/api/categories')
       this.productClassifyList = res.data
     }
   },

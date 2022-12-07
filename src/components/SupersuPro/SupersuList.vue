@@ -48,7 +48,7 @@ export default {
   methods: {
     // 发送请求获取数据
     async SupersuLis () {
-      const { data: res } = await this.$http.get('/rights/list')
+      const { data: res } = await this.$http.get('/api//rights/list')
       if (res.meta.status !== 200) {
         return this.$message.error('获取权限列表失败')
       }

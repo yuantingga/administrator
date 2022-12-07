@@ -85,7 +85,7 @@ export default {
         attr_sel: this.editDate.attr_sel,
         attr_vals: this.dynamicTags.join(',')
       }
-      const { data: res } = await this.$http.put(`categories/${this.classify}/attributes/${this.editDate.attr_id}`, obj)
+      const { data: res } = await this.$http.put(`/api/categories/${this.classify}/attributes/${this.editDate.attr_id}`, obj)
       console.log(res)
     }
 

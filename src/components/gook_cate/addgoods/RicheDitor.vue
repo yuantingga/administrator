@@ -97,7 +97,7 @@ export default {
       this.richditor.goods_introduce = this.editor.replace(zheng, '')
       console.log(this.richditor)
 
-      const { data: res } = await this.$http.post('goods', this.richditor)
+      const { data: res } = await this.$http.post('/api/goods', this.richditor)
       if (res.meta.status !== 201) return this.$message.error(res.meta.msg)
       this.$message({
         type: 'success',

@@ -19,8 +19,21 @@ Vue.prototype.moment = moment
 Vue.prototype.$http = axios
 
 // 请求根路由
-axios.defaults.baseURL = 'http://120.78.137.246:8888/api/private/v1/'
+// axios.defaults.baseURL = ' http://120.78.137.246:8888/api/private/v1/'
 // 请求拦截器
+
+axios.create({
+  baseURL: `${location.href.split(/#/)[0]}`, // 强哥
+  // baseURL:import.meta.env.MODE === "production" ? apis.production:apis.development ,
+  timeout: 60000, // 请求毫秒
+  withCredentials: true, // 异步请求携带cookie
+  headers: {
+    // 设置后端需要的传参类型
+    'Content-Type': 'application/json;charset=UTF-8;',
+    token: 'your token',
+    'X-Requested-With': 'XMLHttpRequest'
+  }
+})
 axios.interceptors.request.use(function (config) {
   config.headers.Authorization = sessionStorage.getItem('token')
   NProgress.start()

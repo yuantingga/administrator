@@ -27,7 +27,6 @@
         </el-form>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -84,7 +83,7 @@ export default {
       this.$refs.loginFormRef.validate(async valid => {
         // 表单校验失败，返回
         if (!valid) return this.open3()
-        const { data: res } = await this.$http.post('login', this.ruleForm)
+        const { data: res } = await this.$http.post('/api/login', this.ruleForm)
 
         if (res.meta.status === 200) {
           this.open2()
@@ -131,7 +130,6 @@ export default {
     background: white;
     padding: 0 20px;
     box-sizing: border-box;
-
     position: relative;
     left: 50%;
     top: 50%;

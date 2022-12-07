@@ -42,7 +42,7 @@ export default {
     },
 
     async getParameters (val) {
-      const { data: res } = await this.$http.get(`categories/${val.PrroductClassifyArr[2]}/attributes`, {
+      const { data: res } = await this.$http.get(`/api/categories/${val.PrroductClassifyArr[2]}/attributes`, {
         params: { sel: 'many' }
       })
 
