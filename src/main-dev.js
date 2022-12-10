@@ -23,7 +23,7 @@ Vue.prototype.$http = axios
 // 请求拦截器
 
 axios.create({
-  baseURL: 'https://localhost:8080', // 强哥
+  baseURL: `${location.href.split(/['#']/)[0]}`, // 强哥
   // baseURL:import.meta.env.MODE === "production" ? apis.production:apis.development ,
   timeout: 60000, // 请求毫秒
   withCredentials: true, // 异步请求携带cookie
