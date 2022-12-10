@@ -27,6 +27,7 @@ axios.create({
   // baseURL:import.meta.env.MODE === "production" ? apis.production:apis.development ,
   timeout: 60000, // 请求毫秒
   withCredentials: true, // 异步请求携带cookie
+  method: 'OPTIONS' | 'GET' | 'HEAD' | 'POST' | 'PUT' | 'DELETE' | 'TRACE' | 'CONNECT',
   headers: {
     // 设置后端需要的传参类型
     'Content-Type': 'application/json;charset=UTF-8;',
